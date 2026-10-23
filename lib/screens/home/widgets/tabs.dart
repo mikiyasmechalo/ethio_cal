@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import 'package:ethio_cal/providers/theme_provider.dart';
+import 'package:ethio_cal/providers/settings_provider.dart';
 
 class Tabs extends StatelessWidget {
   final bool isSelected;
@@ -14,30 +15,49 @@ class Tabs extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = Provider.of<ThemeProvider>(context);
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     final isDark = themeProvider.isDarkMode;
+    final contentColor = themeProvider.highlightColor;
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+      padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 8),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           Row(
             children: [
+              Builder(
+                builder: (scaffoldCtx) => IconButton(
+                  tooltip: 'ማውጫ (Menu)',
+                  icon: Icon(Icons.menu_rounded, color: contentColor, size: 26),
+                  onPressed: () => Scaffold.of(scaffoldCtx).openDrawer(),
+                ),
+              ),
+              const SizedBox(width: 8),
               _buildTab(
                 "Calendar",
                 !isSelected,
-                isDark,
+                contentColor,
                 () => onTabChanged(false),
               ),
-              const SizedBox(width: 24),
-              _buildTab("Today", isSelected, isDark, () => onTabChanged(true)),
+              const SizedBox(width: 20),
+              _buildTab(
+                "Today",
+                isSelected,
+                contentColor,
+                () => onTabChanged(true),
+              ),
             ],
           ),
           IconButton(
-            onPressed: () => themeProvider.toggleTheme(),
+            tooltip: isDark ? 'Light theme' : 'Dark theme',
+            onPressed: () {
+              final next = isDark ? AppThemeType.light : AppThemeType.dark;
+              settingsProvider.setTheme(next);
+            },
             icon: Icon(
-              isDark ? Icons.light_mode : Icons.dark_mode,
-              color: isDark ? Colors.white : const Color(0xFF3D312A),
+              isDark ? Icons.light_mode_rounded : Icons.dark_mode_rounded,
+              color: contentColor,
             ),
           ),
         ],
@@ -45,11 +65,7 @@ class Tabs extends StatelessWidget {
     );
   }
 
-  Widget _buildTab(String label, bool active, bool isDark, VoidCallback onTap) {
-    const Color richBlack = Color(0xFF3D312A);
-
-    final Color contentColor = isDark ? Colors.white : richBlack;
-
+  Widget _buildTab(String label, bool active, Color contentColor, VoidCallback onTap) {
     return GestureDetector(
       onTap: onTap,
       child: AnimatedContainer(

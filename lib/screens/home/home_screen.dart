@@ -1,3 +1,4 @@
+import 'package:ethio_cal/screens/home/widgets/app_drawer.dart';
 import 'package:ethio_cal/screens/home/widgets/tabs.dart';
 import 'package:ethio_cal/utils/app_router.dart';
 import 'package:flutter/material.dart';
@@ -18,11 +19,10 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
     bool isToday = location == AppRouter.todayRoute;
 
     return Scaffold(
+      drawer: const AppDrawer(),
       body: SafeArea(
         child: Column(
           children: [
-            Padding(padding: const EdgeInsets.only(top: 26.0)),
-
             Tabs(
               isSelected: isToday,
               onTabChanged: (bool selectToday) {
@@ -33,7 +33,6 @@ class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
                 }
               },
             ),
-
             Expanded(child: widget.navigationChild),
           ],
         ),
