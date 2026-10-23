@@ -72,5 +72,16 @@ void main() {
       expect(OrthodoxDayNames.getPrimarySaint(1, 29), 'በዓለ ወልድ');
       expect(OrthodoxDayNames.getPrimarySaint(13, 3), 'ቅዱስ ሩፋኤል ሊቀ መላእክት');
     });
+
+    test('getEventsForMonth and getEventsForDay accuracy', () {
+      final meskeremEvents = OrthodoxCalendarService.getEventsForMonth(2017, 1);
+      expect(meskeremEvents.isNotEmpty, true);
+      final enkutatash = meskeremEvents.where((e) => e.day == 1);
+      expect(enkutatash.isNotEmpty, true);
+      expect(enkutatash.first.title.contains('እንቁጣጣሽ'), true);
+
+      final meskelDayEvents = OrthodoxCalendarService.getEventsForDay(2017, 1, 17);
+      expect(meskelDayEvents.any((e) => e.title.contains('መስቀል')), true);
+    });
   });
 }

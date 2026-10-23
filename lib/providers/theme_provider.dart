@@ -6,6 +6,7 @@ class ThemeProvider extends ChangeNotifier {
 
   AppThemeType get currentTheme => _currentTheme;
   bool get isDarkMode => _currentTheme != AppThemeType.light;
+  bool get isDark => isDarkMode;
 
   static const Color richBlack = Color(0xFF3D312A);
 

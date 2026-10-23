@@ -332,6 +332,29 @@ class OrthodoxCalendarService {
     return events;
   }
 
+  /// Returns events for a specific Ethiopian year and month.
+  static List<CalendarEvent> getEventsForMonth(
+    int year,
+    int month, {
+    bool includeOrthodox = true,
+  }) {
+    return getAllYearEvents(year, includeOrthodox: includeOrthodox)
+        .where((e) => e.month == month)
+        .toList();
+  }
+
+  /// Returns events for a specific Ethiopian date.
+  static List<CalendarEvent> getEventsForDay(
+    int year,
+    int month,
+    int day, {
+    bool includeOrthodox = true,
+  }) {
+    return getAllYearEvents(year, includeOrthodox: includeOrthodox)
+        .where((e) => e.month == month && e.day == day)
+        .toList();
+  }
+
   /// Calculates Islamic holidays for the given Ethiopian year.
   static void _addIslamicHolidays(List<CalendarEvent> events, int etYear) {
     // Convert Meskerem 1 of etYear to Gregorian to find start & end dates
