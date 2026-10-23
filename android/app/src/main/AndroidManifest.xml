@@ -188,6 +188,22 @@
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider_progress_gregorian_glassy_dark"/>
         </receiver>
+        <receiver android:name=".OrthodoxWidgetProvider" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.anexon.ethio_cal.OrthodoxWidgetProvider.ACTION_REFRESH"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider_orthodox_provider"/>
+        </receiver>
+        <receiver android:name=".OrthodoxWidgetDarkProvider" android:exported="true">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
+                <action android:name="com.anexon.ethio_cal.OrthodoxWidgetDarkProvider.ACTION_REFRESH"/>
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider"
+                android:resource="@xml/appwidget_provider_orthodox_dark_provider"/>
+        </receiver>
         <!-- flutter_android_widgets:end -->
         <meta-data
             android:name="flutterEmbedding"

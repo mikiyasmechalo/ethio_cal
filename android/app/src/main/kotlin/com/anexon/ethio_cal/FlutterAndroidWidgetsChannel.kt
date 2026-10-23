@@ -1,4 +1,4 @@
-﻿package com.anexon.ethio_cal
+package com.anexon.ethio_cal
 
 import android.app.Activity
 import android.appwidget.AppWidgetManager
@@ -25,7 +25,9 @@ object FlutterAndroidWidgetsChannel {
         ProgressEthiopianWidgetProvider::class.java,
         ProgressEthiopianWidgetDarkProvider::class.java,
         ProgressGregorianWidgetProvider::class.java,
-        ProgressGregorianWidgetDarkProvider::class.java
+        ProgressGregorianWidgetDarkProvider::class.java,
+        OrthodoxWidgetProvider::class.java,
+        OrthodoxWidgetDarkProvider::class.java
     )
 
     fun configure(activity: Activity, flutterEngine: FlutterEngine) {

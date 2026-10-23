@@ -665,6 +665,98 @@ final progressGregorianGlassyDarkWidgetProvider = AndroidWidget(
 );
 
 /// All widget definitions grouped for use with WidgetUpdater.initialize()
+/// Orthodox widget — shows date + day + saint + evangelist (white background)
+final orthodoxWidgetProvider = AndroidWidget(
+  info: WidgetInfo(
+    widgetClassName: 'OrthodoxWidgetProvider',
+    widgetName: 'Orthodox Calendar',
+    minWidth: 250,
+    minHeight: 110,
+    updateInterval: const Duration(hours: 1),
+    resizeMode: WidgetResizeMode.both,
+  ),
+  layout: WColumn(
+    backgroundColor: '#FFFFFF',
+    padding: 14,
+    gravity: WGravity.center,
+    children: [
+      WText(
+        r'${ethiopian_date}',
+        textSize: 22,
+        bold: true,
+        textColor: '#1A1A1A',
+        gravity: WGravity.center,
+      ),
+      WText(
+        r'${ethiopian_day}',
+        textSize: 14,
+        textColor: '#666666',
+        gravity: WGravity.center,
+      ),
+      WText(
+        r'${orthodox_saint}',
+        textSize: 14,
+        bold: true,
+        textColor: '#D97706',
+        gravity: WGravity.center,
+      ),
+      WText(
+        r'${orthodox_year}',
+        textSize: 12,
+        textColor: '#888888',
+        gravity: WGravity.center,
+      ),
+    ],
+  ),
+  dataKeys: const ['ethiopian_date', 'ethiopian_day', 'orthodox_saint', 'orthodox_year'],
+);
+
+/// Orthodox widget dark — shows date + day + saint + evangelist (dark background)
+final orthodoxDarkWidgetProvider = AndroidWidget(
+  info: WidgetInfo(
+    widgetClassName: 'OrthodoxWidgetDarkProvider',
+    widgetName: 'Orthodox Calendar Dark',
+    minWidth: 250,
+    minHeight: 110,
+    updateInterval: const Duration(hours: 1),
+    resizeMode: WidgetResizeMode.both,
+  ),
+  layout: WColumn(
+    backgroundColor: '#2C221D',
+    padding: 14,
+    gravity: WGravity.center,
+    children: [
+      WText(
+        r'${ethiopian_date}',
+        textSize: 22,
+        bold: true,
+        textColor: '#FFFFFF',
+        gravity: WGravity.center,
+      ),
+      WText(
+        r'${ethiopian_day}',
+        textSize: 14,
+        textColor: '#B3B3B3',
+        gravity: WGravity.center,
+      ),
+      WText(
+        r'${orthodox_saint}',
+        textSize: 14,
+        bold: true,
+        textColor: '#F59E0B',
+        gravity: WGravity.center,
+      ),
+      WText(
+        r'${orthodox_year}',
+        textSize: 12,
+        textColor: '#9E9E9E',
+        gravity: WGravity.center,
+      ),
+    ],
+  ),
+  dataKeys: const ['ethiopian_date', 'ethiopian_day', 'orthodox_saint', 'orthodox_year'],
+);
+
 final allWidgets = [
   myHomeWidgetProvider,
   myHomeWidgetDarkProvider,
@@ -682,4 +774,6 @@ final allWidgets = [
   progressGregorianDarkWidgetProvider,
   progressGregorianGlassyWidgetProvider,
   progressGregorianGlassyDarkWidgetProvider,
+  orthodoxWidgetProvider,
+  orthodoxDarkWidgetProvider,
 ];
