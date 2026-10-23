@@ -1,4 +1,5 @@
 import 'package:ethio_cal/my_widgets.dart';
+import 'package:ethio_cal/providers/settings_provider.dart';
 import 'package:ethio_cal/services/update_widget_background.dart';
 import 'package:ethio_cal/services/widget_service.dart';
 import 'package:flutter/material.dart';
@@ -28,11 +29,20 @@ void main() async {
     rescheduleOnReboot: true,
   );
 
+  final settingsProvider = SettingsProvider();
+  await settingsProvider.init();
+
   final themeProvider = ThemeProvider();
-  await themeProvider.init();
+  themeProvider.updateFromSettings(settingsProvider.selectedTheme);
 
   runApp(
-    ChangeNotifierProvider.value(value: themeProvider, child: const MyApp()),
+    MultiProvider(
+      providers: [
+        ChangeNotifierProvider.value(value: settingsProvider),
+        ChangeNotifierProvider.value(value: themeProvider),
+      ],
+      child: const MyApp(),
+    ),
   );
 }
 
@@ -41,12 +51,15 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final settingsProvider = Provider.of<SettingsProvider>(context);
     final themeProvider = Provider.of<ThemeProvider>(context);
+
+    // Keep themeProvider in sync with settingsProvider
+    themeProvider.updateFromSettings(settingsProvider.selectedTheme);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
-      theme: themeProvider.lightTheme,
-      darkTheme: themeProvider.darkTheme,
+      theme: themeProvider.themeData,
       themeMode: themeProvider.themeMode,
       routerConfig: AppRouter.router,
     );
