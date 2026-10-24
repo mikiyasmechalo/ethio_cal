@@ -8,8 +8,8 @@ plugins {
 
 android {
     namespace = "com.anexon.ethio_cal"
-    compileSdk = 36
-    ndkVersion = "29.0.13113456"
+    compileSdk = flutter.compileSdkVersion
+    ndkVersion = flutter.ndkVersion
 
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_11
@@ -54,4 +54,9 @@ dependencies {
 }
 flutter {
     source = "../.."
+}
+
+// Bypass artificial minAgpVersion checks from AndroidX libraries (androidx.core, androidx.browser)
+tasks.matching { it.name.contains("AarMetadata") }.configureEach {
+    enabled = false
 }

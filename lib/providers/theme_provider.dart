@@ -22,9 +22,9 @@ class ThemeProvider extends ChangeNotifier {
       case AppThemeType.light:
         return const Color(0xFFF7F7F8);
       case AppThemeType.dark:
-        return richBlack;
+        return const Color(0xFF121212); // Pure neutral dark
       case AppThemeType.brown:
-        return const Color(0xFF1F1511);
+        return richBlack; // Original warm brown (0xFF3D312A)
       case AppThemeType.green:
         return const Color(0xFF0D1A14);
       case AppThemeType.burgundy:
@@ -39,9 +39,9 @@ class ThemeProvider extends ChangeNotifier {
       case AppThemeType.light:
         return Colors.white;
       case AppThemeType.dark:
-        return const Color(0xFF2C221D);
+        return const Color(0xFF1E1E1E); // Sleek neutral dark surface
       case AppThemeType.brown:
-        return const Color(0xFF2B1D17);
+        return const Color(0xFF2C221D); // Original warm brown surface
       case AppThemeType.green:
         return const Color(0xFF162B21);
       case AppThemeType.burgundy:
@@ -58,7 +58,7 @@ class ThemeProvider extends ChangeNotifier {
       case AppThemeType.dark:
         return Colors.white;
       case AppThemeType.brown:
-        return const Color(0xFFF5EBE1);
+        return Colors.white;
       case AppThemeType.green:
         return const Color(0xFFE4F5ED);
       case AppThemeType.burgundy:
@@ -73,9 +73,9 @@ class ThemeProvider extends ChangeNotifier {
       case AppThemeType.light:
         return const Color(0xFF7D6B5D);
       case AppThemeType.dark:
-        return const Color(0xFFC4B5A5);
+        return const Color(0xFFD1D5DB); // Neutral silver accent
       case AppThemeType.brown:
-        return const Color(0xFFD4A373);
+        return const Color(0xFFC4B5A5); // Original warm brown accent
       case AppThemeType.green:
         return const Color(0xFF52B788);
       case AppThemeType.burgundy:
@@ -92,19 +92,19 @@ class ThemeProvider extends ChangeNotifier {
       brightness: isDark ? Brightness.dark : Brightness.light,
       scaffoldBackgroundColor: scaffoldColor,
       cardColor: surfaceColor,
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: accentColor,
+      colorScheme: ColorScheme(
         brightness: isDark ? Brightness.dark : Brightness.light,
+        primary: accentColor,
+        onPrimary: Colors.white,
+        secondary: accentColor,
+        onSecondary: Colors.white,
+        error: Colors.redAccent,
+        onError: Colors.white,
         surface: surfaceColor,
+        onSurface: highlightColor,
       ),
     );
   }
 
-  // Legacy compatibility getters for existing code
-  ThemeData get lightTheme => themeData;
-  ThemeData get darkTheme => themeData;
   ThemeMode get themeMode => isDarkMode ? ThemeMode.dark : ThemeMode.light;
-
-  Future<void> init() async {}
-  void toggleTheme() {}
 }

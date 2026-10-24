@@ -128,17 +128,19 @@ class AppDrawer extends StatelessWidget {
                     },
                   ),
 
-                  if (settings.enableOrthodoxFeatures) ...[
-                    _drawerItem(
-                      icon: Icons.church_rounded,
-                      title: 'የአመቱ አጽዋማትና በዓላት (Holidays)',
-                      color: highlight,
-                      onTap: () {
-                        Navigator.of(context).pop();
-                        context.push(AppRouter.holidaysRoute);
-                      },
-                    ),
+                  _drawerItem(
+                    icon: Icons.event_note_rounded,
+                    title: settings.enableOrthodoxFeatures
+                        ? 'የአመቱ አጽዋማትና በዓላት (Fasts & Holidays)'
+                        : 'የአመቱ የሕዝብ በዓላት (Public Holidays)',
+                    color: highlight,
+                    onTap: () {
+                      Navigator.of(context).pop();
+                      context.push(AppRouter.holidaysRoute);
+                    },
+                  ),
 
+                  if (settings.enableOrthodoxFeatures) ...[
                     _drawerItem(
                       icon: Icons.auto_stories_rounded,
                       title: 'የዕለት ስሞች (Orthodox Day Names)',
@@ -277,11 +279,11 @@ class AppDrawer extends StatelessWidget {
   Widget _buildThemeSelector(SettingsProvider settings, Color highlight) {
     const themeColors = [
       MapEntry(AppThemeType.light, Color(0xFFF0F0F0)),
-      MapEntry(AppThemeType.dark, Color(0xFF3D312A)),
-      MapEntry(AppThemeType.brown, Color(0xFF8B5A2B)),
-      MapEntry(AppThemeType.green, Color(0xFF2E6F40)),
-      MapEntry(AppThemeType.burgundy, Color(0xFF800020)),
-      MapEntry(AppThemeType.blue, Color(0xFF1E3A8A)),
+      MapEntry(AppThemeType.dark, Color(0xFF1E1E1E)),
+      MapEntry(AppThemeType.brown, Color(0xFF3D312A)),
+      MapEntry(AppThemeType.green, Color(0xFF162B21)),
+      MapEntry(AppThemeType.burgundy, Color(0xFF2E121D)),
+      MapEntry(AppThemeType.blue, Color(0xFF132238)),
     ];
 
     const themeNames = {

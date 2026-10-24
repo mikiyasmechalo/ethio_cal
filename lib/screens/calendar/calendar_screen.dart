@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:intl/intl.dart';
+import 'package:ethiopian_datetime/ethiopian_datetime.dart';
 import 'package:provider/provider.dart';
 import 'package:ethio_cal/models/calendar_event.dart';
 import 'package:ethio_cal/providers/settings_provider.dart';
@@ -256,6 +258,22 @@ class _CalendarScreenState extends State<CalendarScreen> {
     );
   }
 
+  String _getGregorianMonthRange(int etYear, int etMonth) {
+    try {
+      final daysInMonth = EthiopianDateService.getDaysInMonth(etYear, etMonth);
+      final startGc = ETDateTime(etYear, etMonth, 1).convertToGregorian();
+      final endGc = ETDateTime(etYear, etMonth, daysInMonth).convertToGregorian();
+      final startStr = DateFormat('MMM').format(startGc);
+      final endStr = DateFormat('MMM').format(endGc);
+      if (startStr.toLowerCase() == endStr.toLowerCase()) {
+        return startStr; // e.g. "Sep" for Pagumen
+      }
+      return '$startStr - $endStr'; // e.g. "Sep - Oct"
+    } catch (_) {
+      return '';
+    }
+  }
+
   Widget _buildHeader(
     Color highlightColor,
     Color accentColor,
@@ -263,6 +281,7 @@ class _CalendarScreenState extends State<CalendarScreen> {
     bool enableOrthodox,
   ) {
     final yearName = enableOrthodox ? ' • ${OrthodoxCalendarService.getYearName(_viewYear)}' : '';
+    final gcRange = _getGregorianMonthRange(_viewYear, _viewMonth);
 
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -291,13 +310,29 @@ class _CalendarScreenState extends State<CalendarScreen> {
                   ),
                 ],
               ),
-              Text(
-                _months[_viewMonth - 1],
-                style: GoogleFonts.chauPhilomeneOne(
-                  fontSize: 32,
-                  color: highlightColor,
-                  height: 1.0,
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.baseline,
+                textBaseline: TextBaseline.alphabetic,
+                children: [
+                  Text(
+                    _months[_viewMonth - 1],
+                    style: GoogleFonts.chauPhilomeneOne(
+                      fontSize: 32,
+                      color: highlightColor,
+                      height: 1.0,
+                    ),
+                  ),
+                  if (gcRange.isNotEmpty) ...[
+                    const SizedBox(width: 8),
+                    Text(
+                      '($gcRange)',
+                      style: GoogleFonts.chauPhilomeneOne(
+                        fontSize: 16,
+                        color: highlightColor.withOpacity(0.55),
+                      ),
+                    ),
+                  ],
+                ],
               ),
             ],
           ),
@@ -460,9 +495,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                event.categoryLabel,
+                                '${event.categoryLabel} • ${event.workStatusLabel}',
                                 style: GoogleFonts.chauPhilomeneOne(
-                                  fontSize: 11,
+                                  fontSize: 10,
                                   color: event.categoryColor,
                                 ),
                               ),

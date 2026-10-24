@@ -14,6 +14,7 @@ class CalendarEvent {
   final int year;
   final EventCategory category;
   final String description;
+  final bool isPublicHoliday; // true if offices, banks & schools are closed
 
   const CalendarEvent({
     required this.title,
@@ -22,11 +23,14 @@ class CalendarEvent {
     required this.year,
     required this.category,
     this.description = '',
+    this.isPublicHoliday = false,
   });
 
   bool get isFasting => category == EventCategory.fasting;
   bool get isOrthodox =>
       category == EventCategory.orthodoxFeast || category == EventCategory.fasting;
+
+  String get workStatusLabel => isPublicHoliday ? 'የዕረፍት ቀን' : 'የሥራ ቀን';
 
   Color get categoryColor {
     switch (category) {
@@ -55,5 +59,5 @@ class CalendarEvent {
   }
 
   @override
-  String toString() => '$title ($month/$day/$year - $categoryLabel)';
+  String toString() => '$title ($month/$day/$year - $categoryLabel - ${isPublicHoliday ? "Public Holiday" : "Working Day"})';
 }

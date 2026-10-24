@@ -232,7 +232,7 @@ class DayDetailsModal extends StatelessWidget {
                                       borderRadius: BorderRadius.circular(6),
                                     ),
                                     child: Text(
-                                      e.categoryLabel,
+                                      '${e.categoryLabel} • ${e.workStatusLabel}',
                                       style: GoogleFonts.chauPhilomeneOne(
                                         fontSize: 10,
                                         color: e.categoryColor,

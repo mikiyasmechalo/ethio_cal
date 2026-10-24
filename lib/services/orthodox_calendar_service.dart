@@ -40,8 +40,6 @@ class OrthodoxCalendarService {
 
   /// Adds a number of days to an Ethiopian date respecting the 30-day month rule.
   static ETDateTime addDays(ETDateTime base, int days) {
-    // In Ethiopian calendar, months 1-12 have 30 days.
-    // Calculate total absolute days from Meskerem 1
     int totalDays = ((base.month - 1) * 30) + base.day + days;
     int year = base.year;
 
@@ -72,20 +70,24 @@ class OrthodoxCalendarService {
   /// - Orthodox Fasts (🟣)
   /// - Muslim Holidays (🟢)
   /// - National Holidays (🔴)
+  ///
+  /// Distinguishes public non-working holidays (`isPublicHoliday: true`) from
+  /// working-day church commemorations (`isPublicHoliday: false`).
   static List<CalendarEvent> getAllYearEvents(
     int year, {
     bool includeOrthodox = true,
   }) {
     final events = <CalendarEvent>[];
 
-    // 1. National & International Public Holidays (🔴)
+    // 1. National & International Public Holidays (🔴, isPublicHoliday: true)
     events.add(CalendarEvent(
       title: 'የዘመን መለወጫ (እንቁጣጣሽ)',
       month: 1,
       day: 1,
       year: year,
       category: EventCategory.nationalHoliday,
-      description: 'የኢትዮጵያ አዲስ ዓመት መጀመሪያ ቀን።',
+      isPublicHoliday: true,
+      description: 'የኢትዮጵያ አዲስ ዓመት መጀመሪያ ቀን (የሕዝብ በዓል)።',
     ));
 
     events.add(CalendarEvent(
@@ -94,7 +96,8 @@ class OrthodoxCalendarService {
       day: 23,
       year: year,
       category: EventCategory.nationalHoliday,
-      description: 'የኢትዮጵያ የዓድዋ ድል መታሰቢያ በዓል።',
+      isPublicHoliday: true,
+      description: 'የኢትዮጵያ የዓድዋ ድል መታሰቢያ በዓል (የሕዝብ በዓል)።',
     ));
 
     events.add(CalendarEvent(
@@ -103,7 +106,8 @@ class OrthodoxCalendarService {
       day: 23,
       year: year,
       category: EventCategory.nationalHoliday,
-      description: 'ዓለም አቀፍ የሠራተኞች ቀን።',
+      isPublicHoliday: true,
+      description: 'ዓለም አቀፍ የሠራተኞች ቀን (የሕዝብ በዓል)።',
     ));
 
     events.add(CalendarEvent(
@@ -112,7 +116,8 @@ class OrthodoxCalendarService {
       day: 27,
       year: year,
       category: EventCategory.nationalHoliday,
-      description: 'የኢትዮጵያ አርበኞች ድል መታሰቢያ ቀን።',
+      isPublicHoliday: true,
+      description: 'የኢትዮጵያ አርበኞች ድል መታሰቢያ ቀን (የሕዝብ በዓል)።',
     ));
 
     events.add(CalendarEvent(
@@ -121,29 +126,22 @@ class OrthodoxCalendarService {
       day: 20,
       year: year,
       category: EventCategory.nationalHoliday,
-      description: 'ብሔራዊ በዓል።',
+      isPublicHoliday: true,
+      description: 'ብሔራዊ በዓል (የሕዝብ በዓል)።',
     ));
 
-    // 2. Islamic / Muslim Holidays (🟢)
+    // 2. Islamic / Muslim Public Holidays (🟢, isPublicHoliday: true)
     _addIslamicHolidays(events, year);
 
-    // If Orthodox features are disabled, return only national + islamic holidays
-    if (!includeOrthodox) {
-      events.sort((a, b) {
-        if (a.month != b.month) return a.month.compareTo(b.month);
-        return a.day.compareTo(b.day);
-      });
-      return events;
-    }
-
-    // 3. Fixed Orthodox Feasts (🟡)
+    // 3. Fixed Orthodox Feasts celebrated nationally as Public Holidays (🟡, isPublicHoliday: true)
     events.add(CalendarEvent(
       title: 'የመስቀል በዓል',
       month: 1,
       day: 17,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የቅዱስ መስቀል መታሰቢያ በዓል።',
+      isPublicHoliday: true,
+      description: 'የቅዱስ መስቀል መታሰቢያ በዓል (የሕዝብ በዓል)።',
     ));
 
     final gennaDay = (year % 4 == 3) ? 28 : 29;
@@ -153,7 +151,8 @@ class OrthodoxCalendarService {
       day: gennaDay,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የጌታችን የኢየሱስ ክርስቶስ የልደት በዓል።',
+      isPublicHoliday: true,
+      description: 'የጌታችን የኢየሱስ ክርስቶስ የልደት በዓል (የሕዝብ በዓል)።',
     ));
 
     events.add(CalendarEvent(
@@ -162,16 +161,19 @@ class OrthodoxCalendarService {
       day: 11,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የጌታችን የጥምቀት በዓል።',
+      isPublicHoliday: true,
+      description: 'የጌታችን የጥምቀት በዓል (የሕዝብ በዓል)።',
     ));
 
+    // 4. Fixed Orthodox Feasts that are working days (🟡, isPublicHoliday: false)
     events.add(CalendarEvent(
       title: 'ደብረ ታቦር (ቡሄ)',
       month: 12,
       day: 13,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የደብረ ታቦር በዓል።',
+      isPublicHoliday: false,
+      description: 'የደብረ ታቦር በዓል (የሥራ ቀን)።',
     ));
 
     events.add(CalendarEvent(
@@ -180,16 +182,18 @@ class OrthodoxCalendarService {
       day: 16,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የእመቤታችን የቅድስት ድንግል ማርያም የዕርገት በዓል።',
+      isPublicHoliday: false,
+      description: 'የእመቤታችን የቅድስት ድንግል ማርያም የዕርገት በዓል (የሥራ ቀን)።',
     ));
 
-    // 4. Fixed Orthodox Fasts (🟣)
+    // 5. Fixed Orthodox Fasts (🟣, isPublicHoliday: false)
     events.add(CalendarEvent(
       title: 'ጾመ ነቢያት (የገና ጾም)',
       month: 3,
       day: 15,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የገና ጾም መጀመሪያ (ለ44 ቀናት የሚቆይ)።',
     ));
 
@@ -199,6 +203,7 @@ class OrthodoxCalendarService {
       day: 10,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የጥምቀት ዋዜማ ጋድ ጾም።',
     ));
 
@@ -208,10 +213,11 @@ class OrthodoxCalendarService {
       day: 1,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የፍልሰታ ለማርያም ጾም መጀመሪያ (እስከ ነሐሴ 15)።',
     ));
 
-    // 5. Movable Feasts & Fasts (Relative to Nineveh via Bahire Hasab)
+    // 6. Movable Feasts & Fasts (Relative to Nineveh via Bahire Hasab)
     final nenewe = getNeneweDate(year);
 
     events.add(CalendarEvent(
@@ -220,6 +226,7 @@ class OrthodoxCalendarService {
       day: nenewe.day,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የነነዌ ጾም መጀመሪያ (የ3 ቀናት ጾም)።',
     ));
 
@@ -230,6 +237,7 @@ class OrthodoxCalendarService {
       day: abiyTsom.day,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የዐቢይ ጾም መጀመሪያ (የ55 ቀናት ታላቅ ጾም)።',
     ));
 
@@ -240,7 +248,8 @@ class OrthodoxCalendarService {
       day: debreZeyt.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የደብረ ዘይት እኩለ ጾም በዓል።',
+      isPublicHoliday: false,
+      description: 'የደብረ ዘይት እኩለ ጾም በዓል (የሥራ ቀን)።',
     ));
 
     final hosanna = addDays(nenewe, 62);
@@ -250,9 +259,11 @@ class OrthodoxCalendarService {
       day: hosanna.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የሆሳዕና እሑድ በዓል።',
+      isPublicHoliday: false,
+      description: 'የሆሳዕና እሑድ በዓል (የሥራ ቀን)።',
     ));
 
+    // Public Holidays: Good Friday & Easter (ስቅለት & ፋሲካ)
     final siklet = addDays(nenewe, 67);
     events.add(CalendarEvent(
       title: 'ስቅለት (ዓርብ)',
@@ -260,7 +271,8 @@ class OrthodoxCalendarService {
       day: siklet.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የስቅለት መልካም ዓርብ መታሰቢያ።',
+      isPublicHoliday: true,
+      description: 'የስቅለት መልካም ዓርብ መታሰቢያ (የሕዝብ በዓል)።',
     ));
 
     final fasika = addDays(nenewe, 69);
@@ -270,7 +282,8 @@ class OrthodoxCalendarService {
       day: fasika.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የጌታችን የትንሣኤ (ፋሲካ) ታላቅ በዓል።',
+      isPublicHoliday: true,
+      description: 'የጌታችን የትንሣኤ (ፋሲካ) ታላቅ በዓል (የሕዝብ በዓል)።',
     ));
 
     final rikbeKahnat = addDays(nenewe, 93);
@@ -280,7 +293,8 @@ class OrthodoxCalendarService {
       day: rikbeKahnat.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የርክበ ካህናት በዓል (ከፋሲካ በኋላ በ24ኛው ቀን)።',
+      isPublicHoliday: false,
+      description: 'የርክበ ካህናት በዓል (ከፋሲካ በኋላ በ24ኛው ቀን - የሥራ ቀን)።',
     ));
 
     final erget = addDays(nenewe, 108);
@@ -290,7 +304,8 @@ class OrthodoxCalendarService {
       day: erget.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የጌታችን የዕርገት በዓል (ከፋሲካ በኋላ በ40ኛው ቀን)።',
+      isPublicHoliday: false,
+      description: 'የጌታችን የዕርገት በዓል (ከፋሲካ በኋላ በ40ኛው ቀን - የሥራ ቀን)።',
     ));
 
     final peraklitos = addDays(nenewe, 118);
@@ -300,7 +315,8 @@ class OrthodoxCalendarService {
       day: peraklitos.day,
       year: year,
       category: EventCategory.orthodoxFeast,
-      description: 'የጰራቅሊጦስ በዓል (ከፋሲካ በኋላ በ50ኛው ቀን)።',
+      isPublicHoliday: false,
+      description: 'የጰራቅሊጦስ በዓል (ከፋሲካ በኋላ በ50ኛው ቀን - የሥራ ቀን)።',
     ));
 
     final tsomeHawaryat = addDays(nenewe, 119);
@@ -310,6 +326,7 @@ class OrthodoxCalendarService {
       day: tsomeHawaryat.day,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የሐዋርያት ጾም መጀመሪያ (ከሰኔ ጰራቅሊጦስ ማግስት)።',
     ));
 
@@ -320,8 +337,16 @@ class OrthodoxCalendarService {
       day: tsomeDihnet.day,
       year: year,
       category: EventCategory.fasting,
+      isPublicHoliday: false,
       description: 'የረቡዕና ዓርብ ጾም መጀመሪያ።',
     ));
+
+    // If Orthodox features are disabled:
+    // Remove all fasts and minor working church feasts, KEEPING all public holidays
+    // (Enkutatash, Meskel, Genna, Timket, Adwa, Labour, Patriots, Derg, Eid, Siklet, Fasika)
+    if (!includeOrthodox) {
+      events.removeWhere((e) => e.isFasting || (!e.isPublicHoliday && e.isOrthodox));
+    }
 
     // Sort chronologically by month then day
     events.sort((a, b) {
@@ -379,7 +404,8 @@ class OrthodoxCalendarService {
             day: etDate.day,
             year: etYear,
             category: EventCategory.muslimHoliday,
-            description: 'የዒድ አልፈጥር በዓል።',
+            isPublicHoliday: true,
+            description: 'የዒድ አልፈጥር በዓል (የሕዝብ በዓል)።',
           ));
         }
       } else if (hMonth == 12 && hDay == 10) {
@@ -391,7 +417,8 @@ class OrthodoxCalendarService {
             day: etDate.day,
             year: etYear,
             category: EventCategory.muslimHoliday,
-            description: 'የአረፋ (ዒድ አል አድሃ) በዓል።',
+            isPublicHoliday: true,
+            description: 'የአረፋ (ዒድ አል አድሃ) በዓል (የሕዝብ በዓል)።',
           ));
         }
       } else if (hMonth == 3 && hDay == 12) {
@@ -403,7 +430,8 @@ class OrthodoxCalendarService {
             day: etDate.day,
             year: etYear,
             category: EventCategory.muslimHoliday,
-            description: 'የመውሊድ በዓል።',
+            isPublicHoliday: true,
+            description: 'የመውሊድ በዓል (የሕዝብ በዓል)።',
           ));
         }
       }
@@ -434,28 +462,13 @@ class OrthodoxCalendarService {
     l = l - 10631 * n + 354;
     final j = ((10985 - l) ~/ 5316) * ((50 * l) ~/ 17719) +
         (l ~/ 5670) * ((43 * l) ~/ 15238);
-    l = l - ((30 - j) ~/ 15) * ((17719 * j) ~/ 50) -
+    l = l -
+        ((30 - j) ~/ 15) * ((17719 * j) ~/ 50) -
         (j ~/ 16) * ((15238 * j) ~/ 43) +
         29;
     final m = (24 * l) ~/ 709;
     final d = l - (709 * m) ~/ 24;
     final y = 30 * n + j - 30;
     return [y, m, d];
-  }
-
-  /// Returns events map for a specific month (dayNum -> List of CalendarEvent).
-  static Map<int, List<CalendarEvent>> getMonthEvents(
-    int year,
-    int month, {
-    bool includeOrthodox = true,
-  }) {
-    final allEvents = getAllYearEvents(year, includeOrthodox: includeOrthodox);
-    final monthMap = <int, List<CalendarEvent>>{};
-    for (final event in allEvents) {
-      if (event.month == month) {
-        monthMap.putIfAbsent(event.day, () => []).add(event);
-      }
-    }
-    return monthMap;
   }
 }

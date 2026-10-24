@@ -21,11 +21,15 @@ class AppRouter {
         routes: [
           GoRoute(
             path: todayRoute,
-            builder: (context, state) => const TodayScreen(),
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: TodayScreen(),
+            ),
           ),
           GoRoute(
             path: calendarRoute,
-            builder: (context, state) => const CalendarScreen(),
+            pageBuilder: (context, state) => const NoTransitionPage(
+              child: CalendarScreen(),
+            ),
           ),
         ],
       ),

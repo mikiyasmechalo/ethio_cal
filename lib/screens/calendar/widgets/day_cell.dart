@@ -97,7 +97,7 @@ class DayCell extends StatelessWidget {
               ),
             ),
 
-            // Event Category Color Indicators (Bottom)
+            // Event Category Color Indicators (Bottom - Elongated smooth pills)
             if (events.isNotEmpty)
               Positioned(
                 bottom: 4,
@@ -106,11 +106,11 @@ class DayCell extends StatelessWidget {
                   children: events.take(3).map((e) {
                     return Container(
                       margin: const EdgeInsets.symmetric(horizontal: 1.5),
-                      width: 5,
-                      height: 5,
+                      width: events.length == 1 ? 14 : 7,
+                      height: 3,
                       decoration: BoxDecoration(
                         color: isToday ? Colors.white : e.categoryColor,
-                        shape: BoxShape.circle,
+                        borderRadius: BorderRadius.circular(10),
                       ),
                     );
                   }).toList(),

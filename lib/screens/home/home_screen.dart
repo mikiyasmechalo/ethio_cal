@@ -1,8 +1,10 @@
+import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
+import 'package:ethio_cal/providers/theme_provider.dart';
 import 'package:ethio_cal/screens/home/widgets/app_drawer.dart';
 import 'package:ethio_cal/screens/home/widgets/tabs.dart';
 import 'package:ethio_cal/utils/app_router.dart';
-import 'package:flutter/material.dart';
-import 'package:go_router/go_router.dart';
 
 class HomeScreen extends StatefulWidget {
   final Widget navigationChild;
@@ -15,10 +17,12 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> with TickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
+    final theme = Provider.of<ThemeProvider>(context);
     final String location = GoRouterState.of(context).uri.toString();
     bool isToday = location == AppRouter.todayRoute;
 
     return Scaffold(
+      backgroundColor: theme.scaffoldColor,
       drawer: const AppDrawer(),
       body: SafeArea(
         child: Column(

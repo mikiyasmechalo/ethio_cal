@@ -55,11 +55,14 @@ void main() {
       expect(hasMuslim, true);
       expect(hasNational, true);
 
-      // Check master toggle OFF (exclude orthodox)
+      // Check master toggle OFF (exclude fasting and non-public orthodox feasts, but keep public holidays)
       final secularOnly = OrthodoxCalendarService.getAllYearEvents(2017, includeOrthodox: false);
-      expect(secularOnly.any((e) => e.category == EventCategory.orthodoxFeast), false);
-      expect(secularOnly.any((e) => e.category == EventCategory.fasting), false);
+      expect(secularOnly.any((e) => e.isFasting), false);
       expect(secularOnly.any((e) => e.category == EventCategory.nationalHoliday), true);
+      // Public Orthodox holidays (e.g. Meskel, Genna, Timket, Fasika) are preserved
+      expect(secularOnly.any((e) => e.isPublicHoliday && e.category == EventCategory.orthodoxFeast), true);
+      // Non-public church feasts are filtered out
+      expect(secularOnly.any((e) => !e.isPublicHoliday && e.category == EventCategory.orthodoxFeast), false);
     });
 
     test('OrthodoxDayNames dataset integrity', () {
