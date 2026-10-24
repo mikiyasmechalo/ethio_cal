@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ethiopian_datetime/ethiopian_datetime.dart';
 
 enum EventCategory {
   orthodoxFeast, // 🟡 Orthodox Feasts (መስቀል፣ ገና፣ ጥምቀት፣ ፋሲካ...)
@@ -30,7 +31,20 @@ class CalendarEvent {
   bool get isOrthodox =>
       category == EventCategory.orthodoxFeast || category == EventCategory.fasting;
 
-  String get workStatusLabel => isPublicHoliday ? 'የዕረፍት ቀን' : 'የሥራ ቀን';
+  bool get isSunday {
+    try {
+      final etDate = ETDateTime(year, month, day);
+      return etDate.weekday == 7;
+    } catch (_) {
+      return false;
+    }
+  }
+
+  String get workStatusLabel {
+    if (isPublicHoliday) return 'የዕረፍት ቀን';
+    if (isSunday) return 'እሁድ';
+    return 'የሥራ ቀን';
+  }
 
   Color get categoryColor {
     switch (category) {
@@ -59,5 +73,5 @@ class CalendarEvent {
   }
 
   @override
-  String toString() => '$title ($month/$day/$year - $categoryLabel - ${isPublicHoliday ? "Public Holiday" : "Working Day"})';
+  String toString() => '$title ($month/$day/$year - $categoryLabel - ${isPublicHoliday ? "Public Holiday" : (isSunday ? "Sunday" : "Working Day")})';
 }

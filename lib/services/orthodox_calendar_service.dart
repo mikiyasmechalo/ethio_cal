@@ -87,7 +87,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.nationalHoliday,
       isPublicHoliday: true,
-      description: 'የኢትዮጵያ አዲስ ዓመት መጀመሪያ ቀን (የሕዝብ በዓል)።',
+      description: 'የኢትዮጵያ አዲስ ዓመት መጀመሪያ ቀን (እንቁጣጣሽ)።',
     ));
 
     events.add(CalendarEvent(
@@ -97,7 +97,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.nationalHoliday,
       isPublicHoliday: true,
-      description: 'የኢትዮጵያ የዓድዋ ድል መታሰቢያ በዓል (የሕዝብ በዓል)።',
+      description: 'የኢትዮጵያ የዓድዋ ድል መታሰቢያ በዓል።',
     ));
 
     events.add(CalendarEvent(
@@ -107,7 +107,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.nationalHoliday,
       isPublicHoliday: true,
-      description: 'ዓለም አቀፍ የሠራተኞች ቀን (የሕዝብ በዓል)።',
+      description: 'ዓለም አቀፍ የሠራተኞች ቀን።',
     ));
 
     events.add(CalendarEvent(
@@ -117,7 +117,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.nationalHoliday,
       isPublicHoliday: true,
-      description: 'የኢትዮጵያ አርበኞች ድል መታሰቢያ ቀን (የሕዝብ በዓል)።',
+      description: 'የኢትዮጵያ አርበኞች ድል መታሰቢያ ቀን።',
     ));
 
     events.add(CalendarEvent(
@@ -127,7 +127,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.nationalHoliday,
       isPublicHoliday: true,
-      description: 'ብሔራዊ በዓል (የሕዝብ በዓል)።',
+      description: 'የደርግ ውድቀት መታሰቢያ ብሔራዊ በዓል።',
     ));
 
     // 2. Islamic / Muslim Public Holidays (🟢, isPublicHoliday: true)
@@ -141,7 +141,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: true,
-      description: 'የቅዱስ መስቀል መታሰቢያ በዓል (የሕዝብ በዓል)።',
+      description: 'የደመራና የቅዱስ መስቀል መታሰቢያ በዓል።',
     ));
 
     final gennaDay = (year % 4 == 3) ? 28 : 29;
@@ -152,7 +152,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: true,
-      description: 'የጌታችን የኢየሱስ ክርስቶስ የልደት በዓል (የሕዝብ በዓል)።',
+      description: 'የጌታችን የኢየሱስ ክርስቶስ የልደት በዓል።',
     ));
 
     events.add(CalendarEvent(
@@ -162,7 +162,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: true,
-      description: 'የጌታችን የጥምቀት በዓል (የሕዝብ በዓል)።',
+      description: 'የጌታችን የጥምቀት በዓል።',
     ));
 
     // 4. Fixed Orthodox Feasts that are working days (🟡, isPublicHoliday: false)
@@ -173,7 +173,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የደብረ ታቦር በዓል (የሥራ ቀን)።',
+      description: 'የደብረ ታቦር በዓል (ቡሄ)።',
     ));
 
     events.add(CalendarEvent(
@@ -183,7 +183,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የእመቤታችን የቅድስት ድንግል ማርያም የዕርገት በዓል (የሥራ ቀን)።',
+      description: 'የእመቤታችን የቅድስት ድንግል ማርያም የዕርገት በዓል (ፍልሰታ)።',
     ));
 
     // 5. Fixed Orthodox Fasts (🟣, isPublicHoliday: false)
@@ -249,7 +249,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የደብረ ዘይት እኩለ ጾም በዓል (የሥራ ቀን)።',
+      description: 'የደብረ ዘይት እኩለ ጾም በዓል (5ኛ ሳምንት)።',
     ));
 
     final hosanna = addDays(nenewe, 62);
@@ -260,7 +260,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የሆሳዕና እሑድ በዓል (የሥራ ቀን)።',
+      description: 'የሆሳዕና በዓል (የጌታችን ወደ ኢየሩሳሌም በክብር መግባት)።',
     ));
 
     // Public Holidays: Good Friday & Easter (ስቅለት & ፋሲካ)
@@ -272,7 +272,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: true,
-      description: 'የስቅለት መልካም ዓርብ መታሰቢያ (የሕዝብ በዓል)።',
+      description: 'የስቅለት መልካም ዓርብ መታሰቢያ።',
     ));
 
     final fasika = addDays(nenewe, 69);
@@ -283,7 +283,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: true,
-      description: 'የጌታችን የትንሣኤ (ፋሲካ) ታላቅ በዓል (የሕዝብ በዓል)።',
+      description: 'የጌታችን የትንሣኤ (ፋሲካ) ታላቅ በዓል።',
     ));
 
     final rikbeKahnat = addDays(nenewe, 93);
@@ -294,7 +294,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የርክበ ካህናት በዓል (ከፋሲካ በኋላ በ24ኛው ቀን - የሥራ ቀን)።',
+      description: 'የርክበ ካህናት በዓል (ከፋሲካ በኋላ በ24ኛው ቀን)።',
     ));
 
     final erget = addDays(nenewe, 108);
@@ -305,7 +305,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የጌታችን የዕርገት በዓል (ከፋሲካ በኋላ በ40ኛው ቀን - የሥራ ቀን)።',
+      description: 'የጌታችን የዕርገት በዓል (ከፋሲካ በኋላ በ40ኛው ቀን)።',
     ));
 
     final peraklitos = addDays(nenewe, 118);
@@ -316,7 +316,7 @@ class OrthodoxCalendarService {
       year: year,
       category: EventCategory.orthodoxFeast,
       isPublicHoliday: false,
-      description: 'የጰራቅሊጦስ በዓል (ከፋሲካ በኋላ በ50ኛው ቀን - የሥራ ቀን)።',
+      description: 'የጰራቅሊጦስ በዓል (መንፈስ ቅዱስ የወረደበት - ከፋሲካ በኋላ በ50ኛው ቀን)።',
     ));
 
     final tsomeHawaryat = addDays(nenewe, 119);
@@ -405,7 +405,7 @@ class OrthodoxCalendarService {
             year: etYear,
             category: EventCategory.muslimHoliday,
             isPublicHoliday: true,
-            description: 'የዒድ አልፈጥር በዓል (የሕዝብ በዓል)።',
+            description: 'የዒድ አልፈጥር በዓል (የረመዳን ጾም ፍቺ)።',
           ));
         }
       } else if (hMonth == 12 && hDay == 10) {
@@ -418,7 +418,7 @@ class OrthodoxCalendarService {
             year: etYear,
             category: EventCategory.muslimHoliday,
             isPublicHoliday: true,
-            description: 'የአረፋ (ዒድ አል አድሃ) በዓል (የሕዝብ በዓል)።',
+            description: 'የአረፋ (ዒድ አል አድሃ) የመሥዋዕት በዓል።',
           ));
         }
       } else if (hMonth == 3 && hDay == 12) {
@@ -431,7 +431,7 @@ class OrthodoxCalendarService {
             year: etYear,
             category: EventCategory.muslimHoliday,
             isPublicHoliday: true,
-            description: 'የመውሊድ በዓል (የሕዝብ በዓል)።',
+            description: 'የነቢዩ መሐመድ የልደት መታሰቢያ በዓል።',
           ));
         }
       }

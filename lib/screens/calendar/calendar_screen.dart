@@ -495,7 +495,9 @@ class _CalendarScreenState extends State<CalendarScreen> {
                                 borderRadius: BorderRadius.circular(8),
                               ),
                               child: Text(
-                                '${event.categoryLabel} • ${event.workStatusLabel}',
+                                enableOrthodox
+                                    ? '${event.categoryLabel} • ${event.workStatusLabel}'
+                                    : event.categoryLabel,
                                 style: GoogleFonts.chauPhilomeneOne(
                                   fontSize: 10,
                                   color: event.categoryColor,

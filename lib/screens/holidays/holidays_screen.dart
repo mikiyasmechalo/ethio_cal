@@ -199,7 +199,7 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment: CrossAxisAlignment.center,
                                     children: [
                                       Expanded(
                                         child: Text(
@@ -212,73 +212,84 @@ class _HolidaysScreenState extends State<HolidaysScreen> {
                                         ),
                                       ),
                                       const SizedBox(width: 8),
-                                      // Category + Work Status Badges
-                                      Column(
-                                        crossAxisAlignment: CrossAxisAlignment.end,
-                                        children: [
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 8,
-                                              vertical: 2,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: event.categoryColor.withOpacity(0.15),
-                                              borderRadius: BorderRadius.circular(6),
-                                            ),
-                                            child: Text(
-                                              event.categoryLabel,
-                                              style: GoogleFonts.chauPhilomeneOne(
-                                                fontSize: 10,
-                                                color: event.categoryColor,
-                                              ),
-                                            ),
+                                      // Category Badge (1st Badge)
+                                      Container(
+                                        padding: const EdgeInsets.symmetric(
+                                          horizontal: 8,
+                                          vertical: 2,
+                                        ),
+                                        decoration: BoxDecoration(
+                                          color: event.categoryColor.withOpacity(0.15),
+                                          borderRadius: BorderRadius.circular(6),
+                                        ),
+                                        child: Text(
+                                          event.categoryLabel,
+                                          style: GoogleFonts.chauPhilomeneOne(
+                                            fontSize: 10,
+                                            color: event.categoryColor,
                                           ),
-                                          const SizedBox(height: 3),
-                                          Container(
-                                            padding: const EdgeInsets.symmetric(
-                                              horizontal: 6,
-                                              vertical: 1.5,
-                                            ),
-                                            decoration: BoxDecoration(
-                                              color: event.isPublicHoliday
-                                                  ? Colors.redAccent.withOpacity(0.12)
-                                                  : highlight.withOpacity(0.08),
-                                              borderRadius: BorderRadius.circular(6),
-                                            ),
-                                            child: Text(
-                                              event.workStatusLabel,
-                                              style: GoogleFonts.chauPhilomeneOne(
-                                                fontSize: 9,
-                                                color: event.isPublicHoliday
-                                                    ? Colors.redAccent
-                                                    : highlight.withOpacity(0.55),
-                                              ),
-                                            ),
-                                          ),
-                                        ],
+                                        ),
                                       ),
                                     ],
                                   ),
                                   const SizedBox(height: 6),
 
-                                  // Dual Date: Ethiopian & Gregorian
+                                  // Dual Date (left) + 2nd Badge on the same line (right)
                                   Row(
                                     children: [
-                                      Icon(
-                                        Icons.calendar_today_rounded,
-                                        size: 13,
-                                        color: highlight.withOpacity(0.5),
-                                      ),
-                                      const SizedBox(width: 6),
-                                      Text(
-                                        gcDateLabel.isNotEmpty
-                                            ? '$dateLabel  •  $gcDateLabel (GC)'
-                                            : dateLabel,
-                                        style: GoogleFonts.chauPhilomeneOne(
-                                          fontSize: 13,
-                                          color: highlight.withOpacity(0.75),
+                                      Expanded(
+                                        child: Row(
+                                          children: [
+                                            Icon(
+                                              Icons.calendar_today_rounded,
+                                              size: 13,
+                                              color: highlight.withOpacity(0.5),
+                                            ),
+                                            const SizedBox(width: 6),
+                                            Flexible(
+                                              child: Text(
+                                                gcDateLabel.isNotEmpty
+                                                    ? '$dateLabel  •  $gcDateLabel (GC)'
+                                                    : dateLabel,
+                                                style: GoogleFonts.chauPhilomeneOne(
+                                                  fontSize: 13,
+                                                  color: highlight.withOpacity(0.75),
+                                                ),
+                                                overflow: TextOverflow.ellipsis,
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                       ),
+                                      // 2nd Badge: Only shown when Orthodox features are enabled
+                                      if (isOrthodox) ...[
+                                        const SizedBox(width: 8),
+                                        Container(
+                                          padding: const EdgeInsets.symmetric(
+                                            horizontal: 6,
+                                            vertical: 1.5,
+                                          ),
+                                          decoration: BoxDecoration(
+                                            color: event.isPublicHoliday
+                                                ? Colors.redAccent.withOpacity(0.12)
+                                                : (event.isSunday
+                                                    ? const Color(0xFF38BDF8).withOpacity(0.12)
+                                                    : highlight.withOpacity(0.08)),
+                                            borderRadius: BorderRadius.circular(6),
+                                          ),
+                                          child: Text(
+                                            event.workStatusLabel,
+                                            style: GoogleFonts.chauPhilomeneOne(
+                                              fontSize: 9,
+                                              color: event.isPublicHoliday
+                                                  ? Colors.redAccent
+                                                  : (event.isSunday
+                                                      ? const Color(0xFF38BDF8)
+                                                      : highlight.withOpacity(0.55)),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
                                     ],
                                   ),
 

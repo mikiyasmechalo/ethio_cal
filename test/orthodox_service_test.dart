@@ -86,5 +86,32 @@ void main() {
       final meskelDayEvents = OrthodoxCalendarService.getEventsForDay(2017, 1, 17);
       expect(meskelDayEvents.any((e) => e.title.contains('መስቀል')), true);
     });
+
+    test('workStatusLabel and Sunday resolution', () {
+      final events2017 = OrthodoxCalendarService.getAllYearEvents(2017);
+
+      // Public holidays always yield 'የዕረፍት ቀን'
+      final fasika = events2017.firstWhere((e) => e.title.contains('ትንሣኤ'));
+      expect(fasika.isPublicHoliday, true);
+      expect(fasika.isSunday, true);
+      expect(fasika.workStatusLabel, 'የዕረፍት ቀን');
+
+      // Non-public church feasts landing on Sunday yield 'እሁድ'
+      final hosanna = events2017.firstWhere((e) => e.title.contains('ሆሳዕና'));
+      expect(hosanna.isPublicHoliday, false);
+      expect(hosanna.isSunday, true);
+      expect(hosanna.workStatusLabel, 'እሁድ');
+
+      final debreZeyt = events2017.firstWhere((e) => e.title.contains('ደብረ ዘይት'));
+      expect(debreZeyt.isPublicHoliday, false);
+      expect(debreZeyt.isSunday, true);
+      expect(debreZeyt.workStatusLabel, 'እሁድ');
+
+      // Non-public fasting landing on a weekday yields 'የሥራ ቀን'
+      final nenewe = events2017.firstWhere((e) => e.title.contains('ጾመ ነነዌ'));
+      expect(nenewe.isPublicHoliday, false);
+      expect(nenewe.isSunday, false);
+      expect(nenewe.workStatusLabel, 'የሥራ ቀን');
+    });
   });
 }
