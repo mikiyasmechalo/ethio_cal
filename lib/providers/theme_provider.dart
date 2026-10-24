@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'package:ethio_cal/providers/settings_provider.dart';
 
 class ThemeProvider extends ChangeNotifier {
@@ -9,6 +10,30 @@ class ThemeProvider extends ChangeNotifier {
   bool get isDark => isDarkMode;
 
   static const Color richBlack = Color(0xFF3D312A);
+
+  Future<void> init() async {
+    final prefs = await SharedPreferences.getInstance();
+    final themeIndex = prefs.getInt('appThemeType');
+    if (themeIndex != null &&
+        themeIndex >= 0 &&
+        themeIndex < AppThemeType.values.length) {
+      _currentTheme = AppThemeType.values[themeIndex];
+    } else {
+      final isDark = prefs.getBool('isDarkMode') ?? true;
+      _currentTheme = isDark ? AppThemeType.dark : AppThemeType.light;
+    }
+    notifyListeners();
+  }
+
+  Future<void> setTheme(AppThemeType theme) async {
+    if (_currentTheme != theme) {
+      _currentTheme = theme;
+      notifyListeners();
+      final prefs = await SharedPreferences.getInstance();
+      await prefs.setInt('appThemeType', theme.index);
+      await prefs.setBool('isDarkMode', theme != AppThemeType.light);
+    }
+  }
 
   void updateFromSettings(AppThemeType themeType) {
     if (_currentTheme != themeType) {

@@ -11,7 +11,7 @@ void main() {
     final settingsProvider = SettingsProvider();
     await settingsProvider.init();
     final themeProvider = ThemeProvider();
-    themeProvider.updateFromSettings(settingsProvider.selectedTheme);
+    await themeProvider.init();
 
     await tester.pumpWidget(
       MultiProvider(

@@ -33,7 +33,7 @@ void main() async {
   await settingsProvider.init();
 
   final themeProvider = ThemeProvider();
-  themeProvider.updateFromSettings(settingsProvider.selectedTheme);
+  await themeProvider.init();
 
   runApp(
     MultiProvider(
@@ -51,11 +51,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final settingsProvider = Provider.of<SettingsProvider>(context);
     final themeProvider = Provider.of<ThemeProvider>(context);
-
-    // Keep themeProvider in sync with settingsProvider
-    themeProvider.updateFromSettings(settingsProvider.selectedTheme);
 
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,

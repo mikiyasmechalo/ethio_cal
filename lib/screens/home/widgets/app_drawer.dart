@@ -224,7 +224,7 @@ class AppDrawer extends StatelessWidget {
                     ),
                   ),
                   const SizedBox(height: 6),
-                  _buildThemeSelector(settings, highlight),
+                  _buildThemeSelector(theme, settings, highlight),
 
                   const Divider(height: 24),
 
@@ -276,7 +276,11 @@ class AppDrawer extends StatelessWidget {
     );
   }
 
-  Widget _buildThemeSelector(SettingsProvider settings, Color highlight) {
+  Widget _buildThemeSelector(
+    ThemeProvider theme,
+    SettingsProvider settings,
+    Color highlight,
+  ) {
     const themeColors = [
       MapEntry(AppThemeType.light, Color(0xFFF0F0F0)),
       MapEntry(AppThemeType.dark, Color(0xFF1E1E1E)),
@@ -300,11 +304,14 @@ class AppDrawer extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 8),
       child: Row(
         children: themeColors.map((entry) {
-          final isSelected = settings.selectedTheme == entry.key;
+          final isSelected = theme.currentTheme == entry.key;
           return Padding(
             padding: const EdgeInsets.only(right: 12),
             child: GestureDetector(
-              onTap: () => settings.setTheme(entry.key),
+              onTap: () {
+                theme.setTheme(entry.key);
+                settings.setTheme(entry.key);
+              },
               child: Column(
                 children: [
                   Container(
