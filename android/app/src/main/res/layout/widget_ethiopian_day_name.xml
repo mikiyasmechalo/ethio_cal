@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/widget_container"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="8dp"
+    android:background="#CC1E1E1E">
+
+    <!-- Day Name (e.g. ረቡዕ) -->
+    <TextView
+        android:id="@+id/text_day_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ረቡዕ"
+        android:textSize="28sp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        android:shadowColor="#80000000"
+        android:shadowDx="0"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        />
+
+    <!-- Orthodox Saint Name (e.g. ፊልጶስ ሐዋርያ) -->
+    <TextView
+        android:id="@+id/text_saint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="ፊልጶስ ሐዋርያ"
+        android:textSize="12sp"
+        android:textColor="#D6A87A"
+        android:textStyle="bold"
+        android:gravity="center"
+        android:layout_marginTop="3dp"
+        android:visibility="gone"
+        android:shadowColor="#80000000"
+        android:shadowDx="0"
+        android:shadowDy="1"
+        android:shadowRadius="2"
+        />
+
+</LinearLayout>

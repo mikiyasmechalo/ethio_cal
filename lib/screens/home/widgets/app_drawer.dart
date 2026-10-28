@@ -188,6 +188,32 @@ class AppDrawer extends StatelessWidget {
                     onChanged: (val) => settings.toggleOrthodoxFeatures(val),
                   ),
 
+                  // Show Orthodox Day Names in Widgets (Under Orthodox Features, off by default)
+                  if (settings.enableOrthodoxFeatures)
+                    Padding(
+                      padding: const EdgeInsets.only(left: 16),
+                      child: SwitchListTile(
+                        contentPadding: const EdgeInsets.symmetric(horizontal: 8),
+                        activeThumbColor: accent,
+                        title: Text(
+                          'የዕለቱን ስም በዊጅት አሳይ',
+                          style: GoogleFonts.chauPhilomeneOne(
+                            fontSize: 13,
+                            color: highlight,
+                          ),
+                        ),
+                        subtitle: Text(
+                          'Show Orthodox day names on widgets',
+                          style: GoogleFonts.chauPhilomeneOne(
+                            fontSize: 11,
+                            color: highlight.withOpacity(0.5),
+                          ),
+                        ),
+                        value: settings.showOrthodoxDayNamesInWidgets,
+                        onChanged: (val) => settings.toggleShowOrthodoxDayNamesInWidgets(val),
+                      ),
+                    ),
+
                   // Show GC Date in Cell Switch
                   SwitchListTile(
                     contentPadding: const EdgeInsets.symmetric(horizontal: 8),

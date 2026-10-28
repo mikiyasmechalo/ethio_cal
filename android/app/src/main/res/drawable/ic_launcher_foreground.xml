@@ -58,10 +58,10 @@
         android:fillType="nonZero"/>
     <path
         android:pathData="M41.46,27.24l0,7.27m25.43,-7.27l0,7.27"
-        android:strokeLineJoin="miter"
-        android:strokeWidth="4.54"
         android:fillColor="#535353"
-        android:strokeColor="#f96d47"
         android:fillType="nonZero"/>
+    <path
+        android:pathData="M39.18,27.24c0,-1.25 1.02,-2.27 2.27,-2.27c1.25,0 2.27,1.02 2.27,2.27l0,7.27c0,1.25 -1.02,2.27 -2.27,2.27c-1.25,0 -2.27,-1.02 -2.27,-2.27l0,-7.27ZM64.62,27.24c0,-1.25 1.02,-2.27 2.27,-2.27c1.25,0 2.27,1.02 2.27,2.27l0,7.27c0,1.25 -1.02,2.27 -2.27,2.27c-1.25,0 -2.27,-1.02 -2.27,-2.27l0,-7.27Z"
+        android:fillColor="#eab308"/>
   </group>
 </vector>

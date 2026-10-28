@@ -4,53 +4,254 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="8dp"
-    android:background="#FFFFFF"
-    android:gravity="center_vertical">
+    android:padding="14dp"
+    android:background="#CC1E1E1E">
 
     <!-- Day -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView android:id="@+id/text_day" android:layout_width="66dp" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:typeface="monospace"/>
-        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
-            <TextView android:id="@+id/dots_day_top" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginBottom="-3dp"/>
-            <TextView android:id="@+id/dots_day_bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginTop="-3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/text_day"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:typeface="monospace"
+            android:text="WEDNESDAY"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/dots_day_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="••••••••••"/>
+            <TextView
+                android:id="@+id/dots_day_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="••••••••••"/>
         </LinearLayout>
-        <TextView android:id="@+id/text_day_percent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:layout_marginStart="4dp" android:typeface="monospace"/>
+        <TextView
+            android:id="@+id/text_day_percent"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="6dp"
+            android:gravity="end"
+            android:typeface="monospace"
+            android:text="43%"/>
     </LinearLayout>
-
-    <TextView android:layout_width="match_parent" android:layout_height="2dp" android:text="" />
 
     <!-- Week -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView android:id="@+id/text_week" android:layout_width="66dp" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:typeface="monospace"/>
-        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
-            <TextView android:id="@+id/dots_week_top" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginBottom="-3dp"/>
-            <TextView android:id="@+id/dots_week_bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginTop="-3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/text_week"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:typeface="monospace"
+            android:text="WEEK 43"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/dots_week_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="••••••••··"/>
+            <TextView
+                android:id="@+id/dots_week_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="••••••••··"/>
         </LinearLayout>
-        <TextView android:id="@+id/text_week_percent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:layout_marginStart="4dp" android:typeface="monospace"/>
+        <TextView
+            android:id="@+id/text_week_percent"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="6dp"
+            android:gravity="end"
+            android:typeface="monospace"
+            android:text="34%"/>
     </LinearLayout>
-
-    <TextView android:layout_width="match_parent" android:layout_height="2dp" android:text="" />
 
     <!-- Month -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView android:id="@+id/text_month" android:layout_width="66dp" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:typeface="monospace"/>
-        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
-            <TextView android:id="@+id/dots_month_top" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginBottom="-3dp"/>
-            <TextView android:id="@+id/dots_month_bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginTop="-3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/text_month"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:typeface="monospace"
+            android:text="OCTOBER 28"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/dots_month_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="•••••••••·"/>
+            <TextView
+                android:id="@+id/dots_month_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="•••••••••·"/>
         </LinearLayout>
-        <TextView android:id="@+id/text_month_percent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:layout_marginStart="4dp" android:typeface="monospace"/>
+        <TextView
+            android:id="@+id/text_month_percent"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="6dp"
+            android:gravity="end"
+            android:typeface="monospace"
+            android:text="88%"/>
     </LinearLayout>
 
-    <TextView android:layout_width="match_parent" android:layout_height="2dp" android:text="" />
-
     <!-- Year -->
-    <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
-        <TextView android:id="@+id/text_year" android:layout_width="66dp" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:typeface="monospace"/>
-        <LinearLayout android:layout_width="0dp" android:layout_weight="1" android:layout_height="wrap_content" android:orientation="vertical">
-            <TextView android:id="@+id/dots_year_top" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginBottom="-3dp"/>
-            <TextView android:id="@+id/dots_year_bottom" android:layout_width="match_parent" android:layout_height="wrap_content" android:textSize="10sp" android:maxLines="1" android:ellipsize="none" android:includeFontPadding="false" android:typeface="monospace" android:textStyle="bold" android:lineSpacingExtra="-4dp" android:layout_marginTop="-3dp"/>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
+        <TextView
+            android:id="@+id/text_year"
+            android:layout_width="82dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:singleLine="true"
+            android:ellipsize="none"
+            android:typeface="monospace"
+            android:text="2026"/>
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/dots_year_top"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="••••••••··"/>
+            <TextView
+                android:id="@+id/dots_year_bottom"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textSize="10sp"
+                android:maxLines="1"
+                android:ellipsize="none"
+                android:includeFontPadding="false"
+                android:typeface="monospace"
+                android:textStyle="bold"
+                android:lineSpacingExtra="-3dp"
+                android:text="••••••••··"/>
         </LinearLayout>
-        <TextView android:id="@+id/text_year_percent" android:layout_width="wrap_content" android:layout_height="wrap_content" android:textSize="12sp" android:textColor="#1A1A1A" android:layout_marginStart="4dp" android:typeface="monospace"/>
+        <TextView
+            android:id="@+id/text_year_percent"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:textSize="12sp"
+            android:textColor="#FFFFFF"
+            android:layout_marginStart="6dp"
+            android:gravity="end"
+            android:typeface="monospace"
+            android:text="82%"/>
     </LinearLayout>
 </LinearLayout>

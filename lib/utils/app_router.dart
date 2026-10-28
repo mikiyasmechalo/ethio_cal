@@ -1,3 +1,4 @@
+import 'dart:ui' as ui;
 import 'package:go_router/go_router.dart';
 import 'package:ethio_cal/screens/home/home_screen.dart';
 import 'package:ethio_cal/screens/today/today_screen.dart';
@@ -5,6 +6,7 @@ import 'package:ethio_cal/screens/calendar/calendar_screen.dart';
 import 'package:ethio_cal/screens/converter/date_converter_screen.dart';
 import 'package:ethio_cal/screens/holidays/holidays_screen.dart';
 import 'package:ethio_cal/screens/day_names/orthodox_day_names_screen.dart';
+import 'package:ethio_cal/screens/widget_config/widget_config_screen.dart';
 
 class AppRouter {
   static const String todayRoute = '/today';
@@ -12,9 +14,18 @@ class AppRouter {
   static const String converterRoute = '/converter';
   static const String holidaysRoute = '/holidays';
   static const String dayNamesRoute = '/day-names';
+  static const String widgetConfigRoute = '/widget-config';
+
+  static String _determineInitialLocation() {
+    final defaultRoute = ui.PlatformDispatcher.instance.defaultRouteName;
+    if (defaultRoute.isNotEmpty && defaultRoute != '/' && defaultRoute.startsWith(widgetConfigRoute)) {
+      return defaultRoute;
+    }
+    return calendarRoute;
+  }
 
   static final GoRouter router = GoRouter(
-    initialLocation: calendarRoute,
+    initialLocation: _determineInitialLocation(),
     routes: [
       ShellRoute(
         builder: (context, state, child) => HomeScreen(navigationChild: child),
@@ -44,6 +55,18 @@ class AppRouter {
       GoRoute(
         path: dayNamesRoute,
         builder: (context, state) => const OrthodoxDayNamesScreen(),
+      ),
+      GoRoute(
+        path: widgetConfigRoute,
+        builder: (context, state) {
+          final idParam = state.uri.queryParameters['appWidgetId'];
+          final typeParam = state.uri.queryParameters['widgetType'];
+          final appWidgetId = int.tryParse(idParam ?? '') ?? 0;
+          return WidgetConfigScreen(
+            appWidgetId: appWidgetId,
+            initialWidgetType: typeParam,
+          );
+        },
       ),
     ],
   );

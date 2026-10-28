@@ -59,150 +59,92 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <activity
+            android:name=".WidgetConfigurationActivity"
+            android:exported="true"
+            android:theme="@style/LaunchTheme"
+            android:configChanges="orientation|keyboardHidden|keyboard|screenSize|smallestScreenSize|locale|layoutDirection|fontScale|screenLayout|density|uiMode"
+            android:hardwareAccelerated="true"
+            android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_CONFIGURE"/>
+            </intent-filter>
+        </activity>
         <!-- flutter_android_widgets:start -->
-        <receiver android:name=".MyHomeWidgetProvider" android:exported="true">
+        <receiver
+            android:name=".EthiopianDateWidgetProvider"
+            android:label="@string/widget_name_ethiopian_date"
+            android:description="@string/widget_description_ethiopian_date"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetProvider.ACTION_REFRESH"/>
+                <action android:name="com.anexon.ethio_cal.EthiopianDateWidgetProvider.ACTION_REFRESH"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_provider"/>
+                android:resource="@xml/appwidget_provider_ethiopian_date"/>
         </receiver>
-        <receiver android:name=".MyHomeWidgetDarkProvider" android:exported="true">
+        <receiver
+            android:name=".EthiopianDayNameWidgetProvider"
+            android:label="@string/widget_name_ethiopian_day_name"
+            android:description="@string/widget_description_ethiopian_day_name"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetDarkProvider.ACTION_REFRESH"/>
+                <action android:name="com.anexon.ethio_cal.EthiopianDayNameWidgetProvider.ACTION_REFRESH"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_dark_provider"/>
+                android:resource="@xml/appwidget_provider_ethiopian_day_name"/>
         </receiver>
-        <receiver android:name=".MyHomeWidgetGlassyProvider" android:exported="true">
+        <receiver
+            android:name=".EthiopianDayWidgetProvider"
+            android:label="@string/widget_name_ethiopian_day"
+            android:description="@string/widget_description_ethiopian_day"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetGlassyProvider.ACTION_REFRESH"/>
+                <action android:name="com.anexon.ethio_cal.EthiopianDayWidgetProvider.ACTION_REFRESH"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_glassy_provider"/>
+                android:resource="@xml/appwidget_provider_ethiopian_day"/>
         </receiver>
-        <receiver android:name=".MyHomeWidgetGlassyDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetGlassyDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_glassy_dark_provider"/>
-        </receiver>
-        <receiver android:name=".MyHomeWidgetDayProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetDayProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_day_provider"/>
-        </receiver>
-        <receiver android:name=".MyHomeWidgetDayDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetDayDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_day_dark_provider"/>
-        </receiver>
-        <receiver android:name=".MyHomeWidgetDayGlassyProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetDayGlassyProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_day_glassy_provider"/>
-        </receiver>
-        <receiver android:name=".MyHomeWidgetDayGlassyDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.MyHomeWidgetDayGlassyDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_my_home_widget_day_glassy_dark_provider"/>
-        </receiver>
-        <receiver android:name=".ProgressEthiopianWidgetProvider" android:exported="true">
+        <receiver
+            android:name=".ProgressEthiopianWidgetProvider"
+            android:label="@string/widget_name_progress_ethiopian"
+            android:description="@string/widget_description_progress_ethiopian"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="com.anexon.ethio_cal.ProgressEthiopianWidgetProvider.ACTION_REFRESH"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider_progress_ethiopian"/>
         </receiver>
-        <receiver android:name=".ProgressGregorianWidgetProvider" android:exported="true">
+        <receiver
+            android:name=".ProgressGregorianWidgetProvider"
+            android:label="@string/widget_name_progress_gregorian"
+            android:description="@string/widget_description_progress_gregorian"
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
                 <action android:name="com.anexon.ethio_cal.ProgressGregorianWidgetProvider.ACTION_REFRESH"/>
+                <action android:name="android.intent.action.DATE_CHANGED"/>
+                <action android:name="android.intent.action.TIME_SET"/>
+                <action android:name="android.intent.action.TIMEZONE_CHANGED"/>
             </intent-filter>
             <meta-data android:name="android.appwidget.provider"
                 android:resource="@xml/appwidget_provider_progress_gregorian"/>
-        </receiver>
-        <receiver android:name=".ProgressEthiopianWidgetDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.ProgressEthiopianWidgetDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_progress_ethiopian_dark"/>
-        </receiver>
-        <receiver android:name=".ProgressGregorianWidgetDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.ProgressGregorianWidgetDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_progress_gregorian_dark"/>
-        </receiver>
-        <receiver android:name=".ProgressEthiopianWidgetGlassyProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.ProgressEthiopianWidgetGlassyProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_progress_ethiopian_glassy"/>
-        </receiver>
-        <receiver android:name=".ProgressGregorianWidgetGlassyProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.ProgressGregorianWidgetGlassyProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_progress_gregorian_glassy"/>
-        </receiver>
-        <receiver android:name=".ProgressEthiopianWidgetGlassyDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.ProgressEthiopianWidgetGlassyDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_progress_ethiopian_glassy_dark"/>
-        </receiver>
-        <receiver android:name=".ProgressGregorianWidgetGlassyDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.ProgressGregorianWidgetGlassyDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_progress_gregorian_glassy_dark"/>
-        </receiver>
-        <receiver android:name=".OrthodoxWidgetProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.OrthodoxWidgetProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_orthodox_provider"/>
-        </receiver>
-        <receiver android:name=".OrthodoxWidgetDarkProvider" android:exported="true">
-            <intent-filter>
-                <action android:name="android.appwidget.action.APPWIDGET_UPDATE"/>
-                <action android:name="com.anexon.ethio_cal.OrthodoxWidgetDarkProvider.ACTION_REFRESH"/>
-            </intent-filter>
-            <meta-data android:name="android.appwidget.provider"
-                android:resource="@xml/appwidget_provider_orthodox_dark_provider"/>
         </receiver>
         <!-- flutter_android_widgets:end -->
         <meta-data
